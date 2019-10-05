@@ -18,6 +18,7 @@
     "server": "nodemon ./index.js --ignore src/",
     "client": "react-scripts start",
     "build": "react-scripts build",
+    "heroku-postbuild": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
