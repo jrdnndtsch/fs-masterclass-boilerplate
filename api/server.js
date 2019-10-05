@@ -13,6 +13,10 @@ app.use('/login', require('./routes/login').router);
 app.use('/books', require('./routes/books').router);
 app.use('/authors', require('./routes/authors').router);
 
+const path = require('path')
+
+app.use('/', express.static(path.join(__dirname, '../build')))
+
 app.use((err, req, res, next) => {
   if (err.name === 'UnauthorizedError') {
     const errors = [
@@ -22,5 +26,9 @@ app.use((err, req, res, next) => {
     res.status(401).json({ errors });
   }
 });
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 module.exports = app;
